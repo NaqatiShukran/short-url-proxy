@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+
+package app;
+
+
+service UrlController {
+    rpc GetShortUrl (UrlHash) returns (UrlObject);
+}
+
+message UrlHash {
+    string urlHash = 1;
+}
+
+message UrlObject {
+    string id = 1;
+    string url = 2;
+    string urlHash = 3;
+    string shortUrl = 4;
+}
