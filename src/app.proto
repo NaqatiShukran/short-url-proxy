@@ -5,7 +5,7 @@ package app;
 
 
 service UrlController {
-    rpc GetShortUrl (UrlHash) returns (UrlObject);
+    rpc GetShortUrl (UrlHash) returns (Url){}
 }
 
 message UrlHash {
@@ -17,4 +17,8 @@ message UrlObject {
     string url = 2;
     string urlHash = 3;
     string shortUrl = 4;
+}
+
+message Url{
+    UrlObject urlOb =1;
 }

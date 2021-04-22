@@ -11,31 +11,6 @@ export class UrlService{
 
   constructor(@InjectModel('UrlCount') private readonly urlCount: Model<UrlCount>){}
 
-
-    // public async getUrlCount(urlHash: string) {
-    //     let url;
-    //     url = await this.client.send<string, string>('url',urlHash).toPromise();
-    //     if (url == null){
-    //         throw new NotFoundException("Url not found");
-    //     }
-    //     const urlCount = await this.getCount(url.urlHash)
-    //     url.count = urlCount
-    //     return {
-    //         url:url.url,
-    //         urlHitCount: url.count
-    //     };
-    // }
-
-//     public async updateUrlCount(urlHash: string) {
-//         let url;
-//         url = await this.client.send<string, string>('url',urlHash).toPromise();
-//         if (url == null){
-//             throw new NotFoundException("Url not found");
-//         }
-//         await this.updateCount(url.urlHash)
-//         return url;
-//     }
-
     public async getCount(urlHash: string){
         const data = await this.urlCount.findOne({urlHash: urlHash})
         if (data==null){
@@ -44,24 +19,24 @@ export class UrlService{
         return data.urlCount;
     }
 
-//     public async updateCount(urlHash: string){
-//         const data = await this.urlCount.findOne({urlHash: urlHash})
-//         console.log(data);
+    public async updateCount(urlHash: string){
+        const data = await this.urlCount.findOne({urlHash: urlHash})
+        // console.log(data);
         
-//         if (data==null){
-//             const newCount = new this.urlCount({
-//                 urlHash: urlHash,
-//                 urlCount: 1
-//             });
-//             const result = await newCount.save();
-//             // console.log("Result if not in db" + result.urlCount);
-//             return result.urlCount;
-//         }
-//         data.urlCount = data.urlCount + 1; 
-//         data.save();
-//         // console.log("return with inc" + data.urlCount);
-//         return data.urlCount;
-//     }
+        if (data==null){
+            const newCount = new this.urlCount({
+                urlHash: urlHash,
+                urlCount: 1
+            });
+            const result = await newCount.save();
+            // console.log("Result if not in db" + result.urlCount);
+            return result.urlCount;
+        }
+        data.urlCount = data.urlCount + 1; 
+        data.save();
+        // console.log("return with inc" + data.urlCount);
+        return data.urlCount;
+    }
 
 
 }

@@ -20,37 +20,30 @@ export class UrlController implements OnModuleInit{
 
     @Get()
     async getUrlCount(@Query('hash') hash ) {
-        console.log('Hash is' + hash);
+        // console.log('Hash is' + hash);
         try{
-            let Url = await this.grpcService.getShortUrl({ urlHash: hash }).toPromise();
-            // console.log(Url.url);
-            // let url1 = eval(Url.url);
-            // console.log(url1)
-            // Url = await this.UrlService.getJsonData(Url.url);
-            // console.log("log in controller", typeof(url1));
+            const Url = await this.grpcService.getShortUrl({ urlHash: hash }).toPromise();
+            // console.log(Url.urlOb);
+            // console.log(typeof(Url.urlOb));
             let hitCount = await this.UrlService.getCount(hash)
             // console.log(hitCount);
-             return {url:Url.url,urlHitCount: hitCount}
+             return {url:Url.urlOb.url,urlHitCount: hitCount}
         }
-        catch(error){
-        };
+        catch(error){};
 
     }
 
     
-    // @Get(":hash")
-    // @Redirect('http://pagenotfound.com/',302)
-    // async updateUrlCount(@Param('hash') hash: string){
-    //     try{
-    //         const Url = await this.UrlService.updateUrlCount(hash);
-    //         // console.log(" +URl is", {url: Url.url});
-    //         return { url:Url.url }
-    //         }
-    //         catch(error){
-    //             return {
-    //                 message: error.message
-    //             }
-    //         };
-    // }
+    @Get(":hash")
+    @Redirect('http://pagenotfound.com/',302)
+    async updateUrlCount(@Param('hash') hash: string){
+        try{
+            const Url = await this.grpcService.getShortUrl({ urlHash: hash }).toPromise();
+            // console.log(" +URl is", {url: Url.url});
+            this.UrlService.updateCount(hash)
+            return { url:Url.url }
+            }
+            catch(error){};
+    }
 
 }
