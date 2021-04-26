@@ -1,13 +1,20 @@
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { UrlModule } from './proxyUrl/proxyUrl.module';
 
+
 @Module({
-  imports: [UrlModule, MongooseModule.forRoot('mongodb+srv://dbUser:Password@urlshortner.pjx1v.mongodb.net/urlShortnerCount?retryWrites=true&w=majority')],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    UrlModule, 
+    MongooseModule.forRoot('mongodb+srv://dbUser:Password@urlshortner.pjx1v.mongodb.net/urlShortnerCount?retryWrites=true&w=majority'),
+    GraphQLModule.forRoot({
+      autoSchemaFile: true,
+    })
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
