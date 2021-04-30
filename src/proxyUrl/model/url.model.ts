@@ -22,7 +22,7 @@ export class UrlModel extends AggregateRoot {
 
   updateUrl() {
     console.log("Update Url Event");
-    this.apply(new UpdateUrlEvent(this.urlHash));
+    this.apply(new UpdateUrlEvent(this.url, this.urlHash));
   }
 
   deleteUrl(){

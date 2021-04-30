@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose"
 import { CqrsModule } from '@nestjs/cqrs';
 
-import { UrlSchema } from "./proxyUrl.model";
+import { eventSchema, UrlSchema } from "./proxyUrl.model";
 import { UrlResolver } from "./proxyUrl.resolver";
 import { UrlService } from "./proxyUrl.service";
 import { QueryHandlers } from "./queries/handler";
@@ -11,7 +11,11 @@ import { EventHandlers } from "./events/handler";
 
 
 @Module({
-    imports: [MongooseModule.forFeature([{name: 'UrlCount' , schema: UrlSchema}]),CqrsModule],
+    imports: [
+        MongooseModule.forFeature([{name: 'UrlCount' , schema: UrlSchema}]),
+        MongooseModule.forFeature([{name: 'eventsSchemaDb' , schema: eventSchema}]),
+        CqrsModule
+    ],
     providers: [
         UrlService, 
         UrlResolver,

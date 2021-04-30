@@ -30,7 +30,7 @@ export class InsertUrlHandler implements ICommandHandler<InsertUrlCommand> {
             await this.repository.insertUrlInDb(command.originalUrl)
         );
         console.log(url);
-        url.insertUrl();
+        url.updateUrl();
         url.commit();
         return url
         
