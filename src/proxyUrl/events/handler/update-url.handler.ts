@@ -12,7 +12,7 @@ export class UpdateUrlHandler implements IEventHandler<UpdateUrlEvent> {
         ) {}
     handle(event: UpdateUrlEvent) {
     console.log('UpdateUrlEvent...');
-    const insertedEvent = this.repository.insertUrlEventInDb(event.url, event.urlHash);
-    console.log("Inserted event is", insertedEvent);
+    // const insertedEvent = this.repository.insertUrlEventInDb(event.url, event.urlHash);
+    // console.log("Inserted event is", insertedEvent);
     }
 }

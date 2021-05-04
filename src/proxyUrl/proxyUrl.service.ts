@@ -1,19 +1,18 @@
-import { Injectable, NotFoundException, Inject, Catch, OnModuleInit } from "@nestjs/common";
-import { ClientProxyFactory, Transport, ClientProxy, Client, ClientGrpc } from '@nestjs/microservices';
+import { Injectable, NotFoundException, OnModuleInit } from "@nestjs/common";
+import { Client, ClientGrpc } from '@nestjs/microservices';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
 import { IGrpcService } from "src/grpc.interfaces";
 import { microserviceOptions } from "src/grpc.options";
 import { GetUrlArgs } from "./dto/args/get-url.args";
-import { UrlCountGraph } from "./model/url";
+
 import { UrlModel } from "./model/url.model";
-import { eventsSchemaDb, UrlCount } from "./proxyUrl.model";
+import { UrlCount } from "./proxyUrl.model";
 
 @Injectable()
 export class UrlService implements OnModuleInit {
     constructor(
-        @InjectModel('UrlCount') private readonly urlCount: Model<UrlCount>,
-        @InjectModel('eventsSchemaDb') private readonly eventsDb: Model<eventsSchemaDb>
+        @InjectModel('UrlCount') private readonly urlCount: Model<UrlCount>
         ) {}
 
     @Client(microserviceOptions)
@@ -60,21 +59,21 @@ export class UrlService implements OnModuleInit {
         return new UrlModel(Url.urlOb.id, Url.urlOb.url, Url.urlOb.urlHash, Url.urlOb.shortUrl);
     }
 
-    public async insertUrlEventInDb(url: string, hash: string){
-        console.log("in InsertUrl event in db finction in service");
+    // public async insertUrlEventInDb(url: string, hash: string){
+    //     console.log("in InsertUrl event in db finction in service");
         
-        const newEvent = new this.eventsDb({
-            url: url,
-            hash: hash,
-            createdBy: "Shukran",
-            createdAt: new Date()
-        });
-        const createdEvent = await newEvent.save();
-        console.log(createdEvent);
+    //     const newEvent = new this.eventsDb({
+    //         url: url,
+    //         hash: hash,
+    //         createdBy: "Shukran",
+    //         createdAt: new Date()
+    //     });
+    //     const createdEvent = await newEvent.save();
+    //     console.log(createdEvent);
 
-        return createdEvent
+    //     return createdEvent
 
-    }
+    // }
 
 
 }

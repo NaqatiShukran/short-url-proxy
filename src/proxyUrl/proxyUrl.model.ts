@@ -11,23 +11,3 @@ export interface UrlCount extends mongoose.Document {
     urlHash: string;
     urlCount: number;
 }
-
-export const eventSchema = new mongoose.Schema({
-    url: { type: String, required: true },
-    hash: { type: String, required: true },
-    createdBy: { type: String },
-    createdAt: { type: Date },
-    updatedBy: { type: String },
-    updatedAt: { type: Date },
-});
-
-
-export interface eventsSchemaDb extends mongoose.Document {
-    id: string;
-    url: string;
-    hash: string;
-    createdBy: string;
-    createdAt: mongoose.Date;
-    updatedBy: string;
-    updatedAt: mongoose.Date;
-}

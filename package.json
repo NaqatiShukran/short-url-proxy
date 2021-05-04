@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^7.6.15",
     "apollo-server-express": "^2.23.0",
     "class-validator": "^0.13.1",
+    "event-sourcing-nestjs": "^1.1.4",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.4",
     "grpc": "^1.24.6",

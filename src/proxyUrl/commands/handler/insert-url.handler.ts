@@ -1,6 +1,7 @@
 import { OnModuleInit } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { Client, ClientGrpc } from '@nestjs/microservices';
+import { StoreEventPublisher } from 'event-sourcing-nestjs';
 import { IGrpcService } from 'src/grpc.interfaces';
 import { microserviceOptions } from 'src/grpc.options';
 import { UrlModel } from 'src/proxyUrl/model/url.model';
@@ -12,7 +13,7 @@ import { InsertUrlCommand } from '../command/insert-url.command';
 export class InsertUrlHandler implements ICommandHandler<InsertUrlCommand> {
     constructor(
         private readonly repository: UrlService,
-        private readonly publisher: EventPublisher
+        private readonly publisher: StoreEventPublisher
         ) {}
 
     // @Client(microserviceOptions)

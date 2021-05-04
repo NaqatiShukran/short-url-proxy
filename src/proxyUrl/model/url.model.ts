@@ -18,6 +18,7 @@ export class UrlModel extends AggregateRoot {
   insertUrl() {
     console.log("Insert Url Event");
     this.apply(new InsertUrlEvent(this.urlHash));
+    
   }
 
   updateUrl() {
