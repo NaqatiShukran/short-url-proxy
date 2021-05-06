@@ -1,12 +1,13 @@
 import { IEventHandler } from '@nestjs/cqrs';
 import { EventsHandler } from '@nestjs/cqrs/dist/decorators/events-handler.decorator';
-import { UrlService } from 'src/proxyUrl/proxyUrl.service';
+
+import { UrlService } from '../../proxyUrl.service';
 import { UpdateUrlEvent } from '../event/update-url.event';
 
 
 
 @EventsHandler(UpdateUrlEvent)
-export class UpdateUrlHandler implements IEventHandler<UpdateUrlEvent> {
+export class UpdateUrlEventHandler implements IEventHandler<UpdateUrlEvent> {
     constructor(
         private readonly repository: UrlService,
         ) {}

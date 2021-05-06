@@ -1,3 +1,3 @@
-import { InsertUrlHandler } from "./insert-url.handler";
+import { InsertUrlCommandHandler } from "./insert-url.handler";
 
-export const CommandHandlers =[InsertUrlHandler];
+export const CommandHandlers =[InsertUrlCommandHandler];

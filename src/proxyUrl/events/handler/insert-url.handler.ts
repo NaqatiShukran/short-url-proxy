@@ -4,7 +4,7 @@ import { InsertUrlEvent } from '../event/insert-url.event';
 
 
 @EventsHandler(InsertUrlEvent)
-export class InsertUrlHandler implements IEventHandler<InsertUrlEvent> {
+export class InsertUrlEventHandler implements IEventHandler<InsertUrlEvent> {
     handle(event: InsertUrlEvent) {
     console.log('InsertUrlEvent...');
     }

@@ -3,9 +3,9 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Client } from '@nestjs/microservices/decorators';
 import { IGrpcService } from 'src/grpc.interfaces';
-import { microserviceOptions } from 'src/grpc.options';
-import { UrlService } from 'src/proxyUrl/proxyUrl.service';
+import { microserviceOptions } from '../../../grpc.options';
 
+import { UrlService } from '../../proxyUrl.service';
 import { GetUrlQuery } from '../query/get-url.queries';
 
 

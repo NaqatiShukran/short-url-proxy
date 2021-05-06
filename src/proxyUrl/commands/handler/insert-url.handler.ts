@@ -3,19 +3,17 @@ import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { Client, ClientGrpc } from '@nestjs/microservices';
 import { StoreEventPublisher } from 'event-sourcing-nestjs';
 import { IGrpcService } from 'src/grpc.interfaces';
-import { microserviceOptions } from 'src/grpc.options';
-import { UrlModel } from 'src/proxyUrl/model/url.model';
-import { UrlService } from 'src/proxyUrl/proxyUrl.service';
+import { microserviceOptions } from '../../../grpc.options';
+ import { UrlService } from '../../proxyUrl.service';
 import { InsertUrlCommand } from '../command/insert-url.command';
 
 
 @CommandHandler(InsertUrlCommand)
-export class InsertUrlHandler implements ICommandHandler<InsertUrlCommand> {
+export class InsertUrlCommandHandler implements ICommandHandler<InsertUrlCommand> {
     constructor(
         private readonly repository: UrlService,
         private readonly publisher: StoreEventPublisher
         ) {}
-
     // @Client(microserviceOptions)
     // private client: ClientGrpc;
     // private grpcService: IGrpcService;

@@ -15,7 +15,7 @@ import { GetUrlQuery } from "./queries/query/get-url.queries";
 @Resolver()
 export class UrlResolver {
     constructor(private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,) {}
+        private readonly queryBus: QueryBus,) { }
 
     // @Client(microserviceOptions)
     // private client: ClientGrpc;
@@ -48,7 +48,13 @@ export class UrlResolver {
     async insertUrl(@Args('insertUrlData') insertUrlData: InsertUrlInput): Promise<UrlGraph> {
         // const Url = await this.grpcService.insertUrl({originalUrl: insertUrlData.originalUrl}).toPromise();
         // return Url.urlOb
-        return this.commandBus.execute(new InsertUrlCommand(insertUrlData.originalUrl))
+        console.log(insertUrlData.originalUrl, "-----");
+        const originalUrl=insertUrlData.originalUrl;
+        return this.commandBus.execute(
+            new InsertUrlCommand(
+                originalUrl
+            ),
+        );
     }
 
 }

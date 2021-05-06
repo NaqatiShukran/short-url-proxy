@@ -3,10 +3,11 @@ import { UrlResolver } from './proxyUrl.resolver';
 import { INestApplication } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 // import { AppModule } from 'src/app.module';
+import { CqrsModule } from '@nestjs/cqrs';
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-describe("Credentials (e2e). GRPC layer", () => {
+describe("resolver", () => {
     let app: INestApplication;
     let module: TestingModule;
     let resolver: UrlResolver;
@@ -14,7 +15,8 @@ describe("Credentials (e2e). GRPC layer", () => {
 
     beforeAll(async () => {
         module = await Test.createTestingModule({
-        imports: [UrlResolver]
+        providers: [UrlResolver],
+        imports:[CqrsModule]
     }).compile();
 
     resolver = module.get<UrlResolver>(UrlResolver);

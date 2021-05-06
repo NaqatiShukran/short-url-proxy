@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UrlGraph {
+  id: String!
+  url: String!
+  urlHash: String!
+  shortUrl: String!
+}
+
+type UrlCountGraph {
+  urlName: String!
+  urlCount: Int!
+}
+
+type Query {
+  getUrlCount(urlHash: String!): UrlCountGraph!
+  getUrl(urlHash: String!): UrlGraph!
+}
+
+type Mutation {
+  insertUrl(insertUrlData: InsertUrlInput!): UrlGraph!
+}
+
+input InsertUrlInput {
+  originalUrl: String!
+}

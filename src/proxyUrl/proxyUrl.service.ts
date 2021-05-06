@@ -3,7 +3,7 @@ import { Client, ClientGrpc } from '@nestjs/microservices';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
 import { IGrpcService } from "src/grpc.interfaces";
-import { microserviceOptions } from "src/grpc.options";
+import { microserviceOptions } from "../grpc.options";
 import { GetUrlArgs } from "./dto/args/get-url.args";
 
 import { UrlModel } from "./model/url.model";

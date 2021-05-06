@@ -5,7 +5,7 @@ import { DeleteUrlEvent } from '../event/delete-url.event';
 
 
 @EventsHandler(DeleteUrlEvent)
-export class DeleteUrlHandler implements IEventHandler<DeleteUrlEvent> {
+export class DeleteUrlEventHandler implements IEventHandler<DeleteUrlEvent> {
     handle(event: DeleteUrlEvent) {
     console.log('DeleteUrlEvent...');
     }

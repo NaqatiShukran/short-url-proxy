@@ -13,9 +13,12 @@ import { EventSourcingModule } from "event-sourcing-nestjs";
 
 @Module({
     imports: [
+        CqrsModule,
         MongooseModule.forFeature([{name: 'UrlCount' , schema: UrlSchema}]),
-        EventSourcingModule.forFeature(),
-        CqrsModule
+        EventSourcingModule.forRoot({
+            mongoURL: 'mongodb://localhost:27017/eventstore'
+        }),
+        EventSourcingModule.forFeature(), 
     ],
     providers: [
         UrlService, 
@@ -24,6 +27,10 @@ import { EventSourcingModule } from "event-sourcing-nestjs";
         ...QueryHandlers,
         ...EventHandlers
     ],
+    exports:[
+        UrlService, 
+        UrlResolver,
+    ]
 })
 
 export class UrlModule {}
