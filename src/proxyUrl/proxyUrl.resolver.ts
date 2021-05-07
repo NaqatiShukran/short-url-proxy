@@ -1,4 +1,5 @@
 // import { OnModuleInit, Redirect } from "@nestjs/common";
+import { Req } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 // import { Client, ClientGrpc } from "@nestjs/microservices";
@@ -49,6 +50,8 @@ export class UrlResolver {
         // const Url = await this.grpcService.insertUrl({originalUrl: insertUrlData.originalUrl}).toPromise();
         // return Url.urlOb
         console.log(insertUrlData.originalUrl, "-----");
+        // console.log("req console", req.url);
+        
         const originalUrl=insertUrlData.originalUrl;
         return this.commandBus.execute(
             new InsertUrlCommand(

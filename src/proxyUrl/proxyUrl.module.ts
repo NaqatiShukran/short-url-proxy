@@ -9,6 +9,7 @@ import { QueryHandlers } from "./queries/handler";
 import { CommandHandlers } from "./commands/handler";
 import { EventHandlers } from "./events/handler";
 import { EventSourcingModule } from "event-sourcing-nestjs";
+import { GraphQLModule } from "@nestjs/graphql";
 
 
 @Module({
@@ -18,7 +19,10 @@ import { EventSourcingModule } from "event-sourcing-nestjs";
         EventSourcingModule.forRoot({
             mongoURL: 'mongodb://localhost:27017/eventstore'
         }),
-        EventSourcingModule.forFeature(), 
+        EventSourcingModule.forFeature(),
+        GraphQLModule.forRoot({
+            autoSchemaFile: true,
+        }), 
     ],
     providers: [
         UrlService, 
